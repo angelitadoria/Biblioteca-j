@@ -14,8 +14,20 @@ public class LibroServiceImpl implements LibroService{
     LibroRepository libroRepository;
 
     @Override
-    public List<Libro> ricerca(String s) {
-        return null;
+    public List<Libro> ricercaPerCodice(String codice) {
+        return libroRepository.findByCodiceContains(codice);
+    }
+
+    @Override
+    public List<Libro> ricercaJpql(String titolo, String cognome, String casaEd) {
+        return libroRepository.
+                findByTitoloContainsAndAutori_cognomeContainsAndCasaEditrice_nomeContains(
+                        titolo, cognome, casaEd);
+    }
+
+    @Override
+    public List<Libro> ricercaJpa(String titolo, String cognome, String casaEd) {
+        return libroRepository.trovaLibro(titolo, cognome, casaEd);
     }
 
     @Override
