@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './home-page/home-page.component';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
-  { path: "/seach", component: SearchComponent }
+  { path: '', redirectTo: '/home-page', pathMatch: 'full' },
+  { path: 'home-page', component: HomePageComponent },
+  { path: 'search', component: SearchComponent }
 ];
 
 @NgModule({
