@@ -42,7 +42,7 @@ public class Libro {
     private List<Autore> autori;
 
     @JsonIgnoreProperties(value = "libro", allowGetters = true, allowSetters = true)
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(referencedColumnName = "id")
     private CasaEditrice casaEditrice;
     

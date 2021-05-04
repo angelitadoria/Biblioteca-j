@@ -1,5 +1,9 @@
     <input type="text" placeholder="cerca" [(ngModel)]="criterio">
-    <button (click)="cercaByCodice()">Cerca</button>
+    <button (click)="cercaByCodice()">Cerca con Codice</button>
+    <br>
+    <input type="text" placeholder="titolo" [(ngModel)]="titolo">
+    <input type="text" placeholder="cognome" [(ngModel)]="cognome">
+    <input type="text" placeholder="casaEditrice" [(ngModel)]="casaEditrice">
     <button (click)="cercaJpql()">Cerca con Jpql</button>
     <button (click)="cercaJpa()">Cerca con Jpa</button>
     <br>
@@ -14,14 +18,14 @@
                     <th>Casa Editrice</th>
                     <th>Scaffale</th>
                 </tr>
-                <tr *ngFor="let l of libro">
+                <tr *ngFor="let l of listaLibri">
                     <td>{{l.codice}}</td>
                     <td>{{l.titolo}}</td>
-                    <td>{{l.autori}}</td>
+                    <td><lu><li *ngFor="let a of l.autori">{{a.cognome}}</li></lu></td>
                     <td>{{l.genere}}</td>
                     <td>{{l.anno}}</td>
-                    <td>{{l.casaEditrice}}</td>
-                    <td>{{l.posizioneScaffale}}</td>
+                    <td>{{l.casaEditrice.nome}}</td>
+                    <td>{{l.posizioneScaffale.codice}}</td>
                 </tr>
         </table>
     </div>

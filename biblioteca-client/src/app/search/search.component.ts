@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CriterioRicercaDto } from 'src/dto/criterio-ricerca-dto';
 import { ListaLibroDto } from 'src/dto/lista-libro-dto';
+import { RicercaLibroDto } from 'src/dto/ricerca-libro-dto';
 import { Libro } from '../entità/libro';
 
 @Component({
@@ -14,7 +15,10 @@ export class SearchComponent implements OnInit {
 
   libro: Libro;
   listaLibri: Libro[];
-  criterio: string;
+  criterio: string = "";
+  cognome: string = "";
+  casaEditrice: string = "";
+  titolo: string = "";
 
   constructor(private http: HttpClient) { }
 
@@ -34,15 +38,20 @@ export class SearchComponent implements OnInit {
   }
 
   cercaJpql() {
-    let dto: CriterioRicercaDto = new CriterioRicercaDto();
-    dto.criterio = this.criterio;
+    let dto: RicercaLibroDto = new RicercaLibroDto();
+    dto.criterio = this.titolo;
+    dto.cognome = this.cognome;
+    dto.casaEditrice = this.casaEditrice;
     let oss: Observable<ListaLibroDto> = this.http.post<ListaLibroDto>('http://localhost:8080/cerca-jpql', dto);
     oss.subscribe(r => this.listaLibri = r.listaLibri);
+    
   }
 
   cercaJpa() {
-    let dto: CriterioRicercaDto = new CriterioRicercaDto();
-    dto.criterio = this.criterio;
+    let dto: RicercaLibroDto = new RicercaLibroDto();
+    dto.criterio = this.titolo;
+    dto.cognome = this.cognome;
+    dto.casaEditrice = this.casaEditrice;
     let oss: Observable<ListaLibroDto> = this.http.post<ListaLibroDto>('http://localhost:8080/cerca-jpa', dto);
     oss.subscribe(r => this.listaLibri = r.listaLibri);
   }

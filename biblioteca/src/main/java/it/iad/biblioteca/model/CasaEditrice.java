@@ -1,12 +1,14 @@
 package it.iad.biblioteca.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class CasaEditrice {
@@ -19,8 +21,8 @@ public class CasaEditrice {
     private String nome;
     
     @JsonIgnore
-    @OneToOne(mappedBy="casaEditrice", cascade = CascadeType.REMOVE)
-    private Libro libro;
+    @OneToMany(mappedBy="casaEditrice", cascade = CascadeType.REMOVE)
+    private List<Libro> libri;
 
     public CasaEditrice() {
     }
@@ -45,12 +47,15 @@ public class CasaEditrice {
         this.nome = nome;
     }
 
-    public Libro getLibro() {
-        return libro;
+    public List<Libro> getLibri() {
+        if (libri == null){
+            libri = new ArrayList<>();
+        }
+        return libri;
     }
 
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public void setLibri(List<Libro> libri) {
+        this.libri = libri;
     }
-    
+
 }

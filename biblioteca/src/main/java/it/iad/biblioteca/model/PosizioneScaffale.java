@@ -3,6 +3,7 @@ package it.iad.biblioteca.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class PosizioneScaffale {
     private int giacenza;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "posizioneScaffale")
+    @OneToMany(mappedBy = "posizioneScaffale", cascade = CascadeType.REMOVE)
     private List<Libro> libri;
 
     public PosizioneScaffale() {
