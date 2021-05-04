@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CriterioRicercaDto } from 'src/dto/criterio-ricerca-dto';
-import { ListaLibroDto } from 'src/dto/lista-libro-dto';
-import { RicercaLibroDto } from 'src/dto/ricerca-libro-dto';
+import { CriterioRicercaDto } from '../dto/criterio-ricerca-dto';
+import { ListaLibroDto } from '../dto/lista-libro-dto';
+import { RicercaLibroDto } from '../dto/ricerca-libro-dto';
 import { Libro } from '../entità/libro';
 
 @Component({
